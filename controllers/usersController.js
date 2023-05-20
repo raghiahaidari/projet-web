@@ -40,7 +40,7 @@ const getArticlesByUser = async (req, res) => {
 		})
 }
 
-const getUserById = async (req, res) => {
+const getByName = async (req, res) => {
 	const name = req.params.name
 	await prisma.user
 		.findFirst({
@@ -119,7 +119,7 @@ const deleteUser = async (req, res) => {
 module.exports = {
 	getAll,
 	getArticlesByUser,
-	getUserById,
+	getByName,
 	createUser,
 	updateUser,
 	deleteUser,

@@ -1,17 +1,17 @@
-var express = require('express');
-var router = express.Router();
-
+const express = require('express')
+var router = express.Router()
+const { ensureAuthenticated } = require('../security/auth')
 const {
 	getAll,
-	getArticleById,
+	getById,
 	createArticle,
 	updateArticle,
 	deleteArticleById,
 } = require('../controllers/articlesController')
 
-router.get('/', getAll)
-router.get('/:id', getArticleById)
-router.post('/', createArticle)
-router.patch('/', updateArticle)
-router.delete('/:id', deleteArticleById)
+router.get('/', /*ensureAuthenticated,*/ getAll)
+router.get('/:id', /*ensureAuthenticated,*/ getById)
+router.post('/', /*ensureAuthenticated,*/ createArticle)
+router.patch('/', /*ensureAuthenticated,*/ updateArticle)
+router.delete('/:id', /*ensureAuthenticated,*/ deleteArticleById)
 module.exports = router

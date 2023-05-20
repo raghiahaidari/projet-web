@@ -22,7 +22,7 @@ const getAll = async (req, res) => {
 		})
 }
 
-const getArticleById = async (req, res) => {
+const getById = async (req, res) => {
 	const id = req.params.id
 	await prisma.article
 		.findFirst({
@@ -103,7 +103,7 @@ const deleteArticleById = async (req, res) => {
 
 module.exports = {
 	getAll,
-	getArticleById,
+	getById,
 	createArticle,
 	updateArticle,
 	deleteArticleById,

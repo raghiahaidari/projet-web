@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,44 +7,44 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Role {
+  AUTHOR
+  ADMIN
+}
+
 model User {
-  id       Int       @id @default(autoincrement())
-  nom      String
+  name     String    @id @unique
   email    String    @unique
   password String
-  role     UserRole  @default(AUTHOR)
+  role     Role      @default(value: AUTHOR)
   articles Article[]
 }
 
-enum UserRole {
-  ADMIN
-  AUTHOR
+model Category {
+  name     String    @id @unique
+  articles Article[]
 }
 
 model Article {
-  id          Int           @id @default(autoincrement())
-  titre       String
-  contenu     String
-  image       String?
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
-  published   Boolean       @default(false)
-  author      User          @relation(fields: [authorId], references: [id])
-  authorId    Int
-  Categorie   Categorie[]   @relation("ArticleCategorie")
-  Commentaire Commentaire[]
+  id           Int       @id @default(autoincrement())
+  title        String
+  content      String
+  imageUrl     String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @default(now())
+  published    Boolean
+  authorName   String
+  categoryName String?
+  author       User      @relation(fields: [authorName], references: [name])
+  category     Category? @relation(fields: [categoryName], references: [name])
+  comments     Comment[]
 }
 
-model Categorie {
-  id       Int       @id @default(autoincrement())
-  nom      String
-  articles Article[] @relation("ArticleCategorie")
-}
-
-model Commentaire {
-  id        Int     @id @default(autoincrement())
-  email     String  @unique
-  contenu   String
-  article   Article @relation(fields: [articleId], references: [id])
-  articleId Int
+model Comment {
+  id          Int      @id @default(autoincrement())
+  content     String
+  createdAt   DateTime @default(now())
+  authorEmail String
+  articleId   Int
+  article     Article  @relation(fields: [articleId], references: [id])
 }
