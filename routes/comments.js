@@ -7,7 +7,7 @@ const {
 	createComment,
 	updateComment,
 	deleteCommentById,
-} = require('../controllers/commentsController')
+} = require('../controllers/commentsController.js')
 
 router.get('/', /*ensureAuthenticated,*/ getAll)
 router.get('/:id', /*ensureAuthenticated,*/ getArticleComments)

@@ -7,7 +7,7 @@ const {
 	createArticle,
 	updateArticle,
 	deleteArticleById,
-} = require('../controllers/articlesController')
+} = require('../controllers/articlesController.js')
 
 router.get('/', /*ensureAuthenticated,*/ getAll)
 router.get('/:id', /*ensureAuthenticated,*/ getById)

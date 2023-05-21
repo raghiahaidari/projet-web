@@ -6,7 +6,7 @@ const {
 	getArticlesByCategory,
 	createCategory,
 	deleteCategory,
-} = require('../controllers/categoriesController')
+} = require('../controllers/categoriesController.js')
 
 router.get('/', /*ensureAuthenticated,*/ getAll)
 router.get('/:name', /*ensureAuthenticated,*/ getArticlesByCategory)

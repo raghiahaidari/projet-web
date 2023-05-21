@@ -1,14 +1,35 @@
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const cors = require('cors')
 
 var app = express();
 
+const corsOptions = {
+	origin: 'http://localhost:3000',
+	credentials: true,
+	optionsSuccessStatus: 200,
+}
+
+app.use(cors(corsOptions));
+
+
+app.use((req, res, next) => {
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	next();
+  });
+
+const indexRouter = require('./routes/index.js')
+const usersRouter = require('./routes/users.js')
+const articlesRouter = require('./routes/articles.js')
+const commentsRouter = require('./routes/comments.js')
+const categoriesRouter = require('./routes/categories.js')
+
+
+  
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -20,12 +41,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/articles', articlesRouter);
+app.use('/comments', commentsRouter);
+app.use('/categories', categoriesRouter);
 app.use('/users', usersRouter);
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
 
 // error handler
 app.use(function(err, req, res, next) {
@@ -36,12 +56,8 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+  
 });
 
-// Start the server
-const PORT = 3306;
-app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
-}); 
 
 module.exports = app;

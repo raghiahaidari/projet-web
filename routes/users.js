@@ -8,9 +8,10 @@ const {
 	createUser,
 	updateUser,
 	deleteUser,
-} = require('../controllers/usersController')
+} = require('../controllers/usersController.js')
 
 router.get('/', /*ensureAuthenticated,*/ getAll)
+router.get('/:name', /*ensureAuthenticated,*/ getByName)
 router.get('/:name', /*ensureAuthenticated,*/ getArticlesByUser)
 router.post('/', /*ensureAuthenticated,*/ createUser)
 router.patch('/', /*ensureAuthenticated,*/ updateUser)
