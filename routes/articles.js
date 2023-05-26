@@ -9,9 +9,9 @@ const {
 	deleteArticleById,
 } = require('../controllers/articlesController.js')
 
-router.get('/', /*ensureAuthenticated,*/ getAll)
-router.get('/:id', /*ensureAuthenticated,*/ getById)
-router.post('/', /*ensureAuthenticated,*/ createArticle)
-router.patch('/', /*ensureAuthenticated,*/ updateArticle)
-router.delete('/:id', /*ensureAuthenticated,*/ deleteArticleById)
+router.get('/', ensureAuthenticated, getAll)
+router.get('/:id', ensureAuthenticated, getById)
+router.post('/', ensureAuthenticated, createArticle)
+router.patch('/', ensureAuthenticated, updateArticle)
+router.delete('/:id', ensureAuthenticated, deleteArticleById)
 module.exports = router

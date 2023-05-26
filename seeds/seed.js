@@ -51,7 +51,7 @@ const getRandomUser = async () => {
 
 const fakerArticles = async () => ({
 	title: faker.lorem.sentence(),
-	content: faker.lorem.sentences(),
+	content: faker.lorem.paragraphs(),
 	imageUrl: `${faker.image.url()}?random=${Date.now()}`,
 	published: true,
 	authorName: (await getRandomUser()).name,

@@ -10,11 +10,11 @@ const {
 	deleteUser,
 } = require('../controllers/usersController.js')
 
-router.get('/', /*ensureAuthenticated,*/ getAll)
-router.get('/:name', /*ensureAuthenticated,*/ getByName)
-router.get('/:name', /*ensureAuthenticated,*/ getArticlesByUser)
-router.post('/', /*ensureAuthenticated,*/ createUser)
-router.patch('/', /*ensureAuthenticated,*/ updateUser)
-router.delete('/:name', /*ensureAuthenticated,*/ deleteUser)
+router.get('/', ensureAuthenticated, getAll)
+router.get('/:name', ensureAuthenticated, getByName)
+router.get('/:name', ensureAuthenticated, getArticlesByUser)
+router.post('/', ensureAuthenticated, createUser)
+router.patch('/', ensureAuthenticated, updateUser)
+router.delete('/:name', ensureAuthenticated, deleteUser)
 
 module.exports = router

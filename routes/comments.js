@@ -9,10 +9,10 @@ const {
 	deleteCommentById,
 } = require('../controllers/commentsController.js')
 
-router.get('/', /*ensureAuthenticated,*/ getAll)
-router.get('/:id', /*ensureAuthenticated,*/ getArticleComments)
-router.post('/', /*ensureAuthenticated,*/ createComment)
-router.patch('/', /*ensureAuthenticated,*/ updateComment)
-router.delete('/:id', /*ensureAuthenticated,*/ deleteCommentById)
+router.get('/', ensureAuthenticated, getAll)
+router.get('/:id', ensureAuthenticated, getArticleComments)
+router.post('/', ensureAuthenticated, createComment)
+router.patch('/', ensureAuthenticated, updateComment)
+router.delete('/:id', ensureAuthenticated, deleteCommentById)
 
 module.exports = router

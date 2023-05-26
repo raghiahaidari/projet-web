@@ -8,9 +8,9 @@ const {
 	deleteCategory,
 } = require('../controllers/categoriesController.js')
 
-router.get('/', /*ensureAuthenticated,*/ getAll)
-router.get('/:name', /*ensureAuthenticated,*/ getArticlesByCategory)
-router.post('/', /*ensureAuthenticated,*/ createCategory)
-router.delete('/:name', /*ensureAuthenticated,*/ deleteCategory)
+router.get('/', ensureAuthenticated, getAll)
+router.get('/:name', ensureAuthenticated, getArticlesByCategory)
+router.post('/', ensureAuthenticated, createCategory)
+router.delete('/:name', ensureAuthenticated, deleteCategory)
 
 module.exports = router
