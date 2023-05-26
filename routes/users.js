@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { ensureAuthenticated } = require('../security/auth')
+
 const {
 	getAll,
 	getArticlesByUser,
@@ -10,11 +10,11 @@ const {
 	deleteUser,
 } = require('../controllers/usersController.js')
 
-router.get('/', ensureAuthenticated, getAll)
-router.get('/:name', ensureAuthenticated, getByName)
-router.get('/:name', ensureAuthenticated, getArticlesByUser)
-router.post('/', ensureAuthenticated, createUser)
-router.patch('/', ensureAuthenticated, updateUser)
-router.delete('/:name', ensureAuthenticated, deleteUser)
+router.get('/', getAll)
+router.get('/:name', getByName)
+router.get('/:name', getArticlesByUser)
+router.post('/', createUser)
+router.patch('/', updateUser)
+router.delete('/:name', deleteUser)
 
 module.exports = router

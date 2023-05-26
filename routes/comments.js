@@ -1,6 +1,6 @@
 const express = require('express')
 var router = express.Router()
-const { ensureAuthenticated } = require('../security/auth')
+
 const {
 	getAll,
 	getArticleComments,
@@ -9,10 +9,10 @@ const {
 	deleteCommentById,
 } = require('../controllers/commentsController.js')
 
-router.get('/', ensureAuthenticated, getAll)
-router.get('/:id', ensureAuthenticated, getArticleComments)
-router.post('/', ensureAuthenticated, createComment)
-router.patch('/', ensureAuthenticated, updateComment)
-router.delete('/:id', ensureAuthenticated, deleteCommentById)
+router.get('/', getAll)
+router.get('/:id', getArticleComments)
+router.post('/', createComment)
+router.patch('/', updateComment)
+router.delete('/:id', deleteCommentById)
 
 module.exports = router

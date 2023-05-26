@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { ensureAuthenticated } = require('../security/auth')
+
 const {
 	getAll,
 	getArticlesByCategory,
@@ -8,9 +8,9 @@ const {
 	deleteCategory,
 } = require('../controllers/categoriesController.js')
 
-router.get('/', ensureAuthenticated, getAll)
-router.get('/:name', ensureAuthenticated, getArticlesByCategory)
-router.post('/', ensureAuthenticated, createCategory)
-router.delete('/:name', ensureAuthenticated, deleteCategory)
+router.get('/', getAll)
+router.get('/:name', getArticlesByCategory)
+router.post('/', createCategory)
+router.delete('/:name', deleteCategory)
 
 module.exports = router

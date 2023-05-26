@@ -1,6 +1,6 @@
 const express = require('express')
 var router = express.Router()
-const { ensureAuthenticated } = require('../security/auth')
+
 const {
 	getAll,
 	getById,
@@ -9,9 +9,9 @@ const {
 	deleteArticleById,
 } = require('../controllers/articlesController.js')
 
-router.get('/', ensureAuthenticated, getAll)
-router.get('/:id', ensureAuthenticated, getById)
-router.post('/', ensureAuthenticated, createArticle)
-router.patch('/', ensureAuthenticated, updateArticle)
-router.delete('/:id', ensureAuthenticated, deleteArticleById)
+router.get('/', getAll)
+router.get('/:id', getById)
+router.post('/', createArticle)
+router.patch('/', updateArticle)
+router.delete('/:id', deleteArticleById)
 module.exports = router
